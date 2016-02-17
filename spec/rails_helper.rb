@@ -3,6 +3,16 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'webmock'
+require 'vcr'
+
+# class ActiveSupport::TestCase
+#   VCR.configure do |config|
+#     config.cassette_library_dir = 'test/cassettes'
+#     config.hook_into :webmock
+#   end
+# end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -18,6 +28,33 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+    #
+    # config.before(:suite) do
+    #
+    #         DatabaseCleaner.clean_with(:truncation)
+    #    end
+    #
+    #    config.before(:each) do
+    #
+    #         DatabaseCleaner.strategy = :transaction
+    #    end
+    #
+    #    config.before(:each, :js => true) do
+    #
+    #         DatabaseCleaner.strategy = :truncation
+    #    end
+    #
+    #    config.before(:each) do
+    #
+    #         DatabaseCleaner.start
+    #
+    #    end
+    #
+    #    config.after(:each) do
+    #
+    #         DatabaseCleaner.clean
+    #    end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
