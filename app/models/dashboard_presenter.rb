@@ -12,11 +12,11 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def number_followers
-    githubdata.followers.count
+    githubdata.followers_count
   end
 
   def number_following
-    githubdata.following.count
+    githubdata.following_count
   end
 
   def contributions_in_last_year
@@ -32,7 +32,14 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def recent_commits
-    binding.pry
-    githubdata.commit_info
+    githubdata.commits.first(5)
+  end
+
+  def repos
+    githubdata.repositories
+  end
+
+  def organization_names
+    githubdata.organization_names
   end
 end

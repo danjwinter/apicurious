@@ -14,7 +14,7 @@ class GithubData
     @number_starred_repos       = params[:number_starred_repos]
     @followers                  = params[:followers]
     @following                  = params[:following]
-    @organizations              = params[:organizations]
+    @organization_names              = params[:organization_names]
     @commit_info                = params[:commit_info]
     @repos                      = params[:repos]
     @contributions_in_last_year = params[:contributions_in_last_year]
@@ -43,15 +43,23 @@ class GithubData
      obj.contributions_in_last_year = attrs["contributions_in_last_year"]
      obj.longest_streak             = attrs["longest_streak"]
      obj.current_streak             = attrs["current_streak"]
-    #  obj.twitter_handle = attrs['twitter_handle']
-    #  obj.location = attrs['location']
    end
    obj
   end
 
   def commits
-    commit_info.map do |commit|
-      
+    commit_info.map do |event|
+      Commit.new(event["repo"], event["url"], event["commits"].count)
+    end
+  end
+
+  def repositories
+    if repos.empty?
+      []
+    else
+      repos.map do |repo|
+        Repository.new(repo)
+      end
     end
   end
 

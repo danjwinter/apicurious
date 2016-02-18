@@ -37,16 +37,44 @@
     <div class="row">
    <div class="col s12">
      <ul class="tabs">
-       <li class="tab col s3"><a href="#test1">Test 1</a></li>
-       <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-       <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-       <li class="tab col s3"><a href="#test4">Test 4</a></li>
+       <li class="tab col s3"><a href="#recent-commits">Recent Commits</a></li>
+       <li class="tab col s3"><a class="active" href="#repos">Repos</a></li>
+       <li class="tab col s3"><a href="#organizations">Organizations</a></li>
      </ul>
    </div>
-   <div id="test1" class="col s12">Test 1</div>
-   <div id="test2" class="col s12">Test 2</div>
-   <div id="test3" class="col s12">Test 3</div>
-   <div id="test4" class="col s12">Test 4</div>
+   <div id="recent-commits" class="col s12">
+     <div class="recent-commits">
+       <% @user.recent_commits.each do |commit| %>
+       <div class="row center">
+         <%= pluralize commit.commit_count, "commit" %> to <%= link_to commit.repo, commit.url %>
+       </div>
+       <% end %>
+     </div>
+   </div>
+   <div id="repos" class="col s12">
+     <% @user.repos.each do |repo| %>
+     <div class="row">
+       <div class="col m4">
+         <%= link_to repo.name, repo.url %>
+       </div>
+       <div class="col m4">
+         Forks: <%= repo.forks_count %>
+       </div>
+       <div class="col m4">
+         Stargazers: <%= repo.stargazers_count %>
+       </div>
+     </div>
+     <% end %>
+   </div>
+   <div id="organizations" class="col s12">
+     <ul>
+       <% @user.organization_names.each do |org_name| %>
+       <li>
+         <%= org_name %>
+       </li>
+       <% end %>
+     </ul>
+   </div>
  </div>
 
 
@@ -76,13 +104,6 @@
       </div>
     </div>
   </div>
-  <div class="recent-commits">
-    <% @user.recent_commits.each do |commit| %>
-    <div class="row">
-      <%=  %>
-      <!-- Pushed <%= commit.count %> commits to <%= commit.first["repo"]["name"] %> -->
-    </div>
-    <% end %>
-  </div>
+
 </div>
 </div>
