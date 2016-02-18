@@ -1,11 +1,88 @@
-<div class="container-fluid container-home">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <h1 class="home">You Are Authorized</h1>
-    <%= image_tag current_user.image_url, class: "img-circle img-thumbnail home-image" %>
-    <h2 class="home"> <%= current_user.name %> </h2>
-    <h2 class="home"> <%= current_user.email %> </h2>
-    <%= link_to "Logout", "/logout", method: :delete, class: "btn btn-lg btn-default btn-home" %>
+
+<div class="row">
+  <div class="col m3">
+      <%= image_tag @user.image_url, class: "user-image" %>
+      <h2 class="user-name"> <%= @user.name %> </h2>
+      <h2 class="user-nickname"> <%= @user.nickname %> </h2>
+      <div class="user-email">
+        <%= @user.email %>
+      </div>
+      <div class="row center">
+        <div class="row small-bottom-margin left-margin">
+          <div class="col m4 center dash-numbers">
+            <%= @user.number_followers %>
+          </div>
+          <div class="col m4 center dash-numbers">
+            <%= @user.number_starred_repos %>
+          </div>
+          <div class="col m4 center dash-numbers">
+            <%= @user.number_following %>
+          </div>
+        </div>
+        <div class="row left-margin">
+          <div class="col m4 center">
+            Followers
+          </div>
+          <div class="col m4 center">
+            Starred
+          </div>
+          <div class="col m4 center">
+            Following
+          </div>
+        </div>
+      </div>
+      <%= link_to "Logout", "/logout", method: :delete, class: "btn btn-lg btn-default btn-home" %>
   </div>
-  <div class="col-md-2"></div>
+  <div class="col m9">
+    <div class="row">
+   <div class="col s12">
+     <ul class="tabs">
+       <li class="tab col s3"><a href="#test1">Test 1</a></li>
+       <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+       <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+       <li class="tab col s3"><a href="#test4">Test 4</a></li>
+     </ul>
+   </div>
+   <div id="test1" class="col s12">Test 1</div>
+   <div id="test2" class="col s12">Test 2</div>
+   <div id="test3" class="col s12">Test 3</div>
+   <div id="test4" class="col s12">Test 4</div>
+ </div>
+
+
+  <div class="row">
+    <div class="col m4 center">
+      <div class="contribution-streak-text">
+        Contributions in the last year
+      </div>
+      <div class="contribution-streak-number">
+        <%= @user.contributions_in_last_year %>
+      </div>
+    </div>
+    <div class="col m4 center">
+      <div class="contribution-streak-text">
+        Longest Streak
+      </div>
+      <div class="contribution-streak-number">
+        <%= @user.longest_streak %>
+      </div>
+    </div>
+    <div class="col m4 center">
+      <div class="contribution-streak-text">
+        Current Streak
+      </div>
+      <div class="contribution-streak-number">
+        <%= @user.current_streak %>
+      </div>
+    </div>
+  </div>
+  <div class="recent-commits">
+    <% @user.recent_commits.each do |commit| %>
+    <div class="row">
+      <%=  %>
+      <!-- Pushed <%= commit.count %> commits to <%= commit.first["repo"]["name"] %> -->
+    </div>
+    <% end %>
+  </div>
+</div>
 </div>

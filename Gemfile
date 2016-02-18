@@ -10,7 +10,8 @@ gem 'rspec-rails'
 gem 'omniauth-github'
 gem 'figaro'
 gem 'faraday'
-
+gem 'nokogiri'
+gem 'sidekiq'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
