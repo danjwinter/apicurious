@@ -1,10 +1,7 @@
 class User < ActiveRecord::Base
   serialize :githubdata, GithubData
-  def initialize
-    super(githubdata)
-  end
 
-  def self.find_or_create_by_auth(auth, current_service)
+  def self.find_or_create_by_auth(auth)
     user = User.find_or_create_by(provider: auth["provider"], uid: auth["uid"])
     user.email = auth["info"]["email"]
     user.nickname = auth["info"]["nickname"]
@@ -14,6 +11,4 @@ class User < ActiveRecord::Base
     user.save
     user
   end
-
-
 end
