@@ -1,9 +1,9 @@
 class GithubData
 
   attr_accessor :number_starred_repos,
-              :followers,
-              :following,
-              :organizations,
+              :followers_count,
+              :following_count,
+              :organization_names,
               :commit_info,
               :repos,
               :contributions_in_last_year,
@@ -14,8 +14,8 @@ class GithubData
   def initialize(params={})
     @new_user = true if params.empty?
     @number_starred_repos       = params[:number_starred_repos]
-    @followers                  = params[:followers]
-    @following                  = params[:following]
+    @followers_count                  = params[:followers_count]
+    @following_count                  = params[:following_count]
     @organization_names              = params[:organization_names]
     @commit_info                = params[:commit_info]
     @repos                      = params[:repos]
@@ -37,9 +37,9 @@ class GithubData
    unless json.nil?
      attrs = JSON.parse json
      obj.number_starred_repos       = attrs["number_starred_repos"]
-     obj.followers                  = attrs["followers"]
-     obj.following                  = attrs["following"]
-     obj.organizations              = attrs["organizations"]
+     obj.followers_count                  = attrs["followers_count"]
+     obj.following_count                  = attrs["following_count"]
+     obj.organization_names              = attrs["organization_names"]
      obj.commit_info                = attrs["commit_info"]
      obj.repos                      = attrs["repos"]
      obj.contributions_in_last_year = attrs["contributions_in_last_year"]
