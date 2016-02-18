@@ -18,9 +18,9 @@ class GithubService
   def attributes
     {
       number_starred_repos: number_starred_repos,
-      followers: followers,
-      following: following,
-      organizations: organizations,
+      followers_count: followers_count,
+      following_count: following_count,
+      organization_names: organization_names,
       commit_info: commit_info,
       repos: repos,
       contributions_in_last_year: contributions_in_last_year,
