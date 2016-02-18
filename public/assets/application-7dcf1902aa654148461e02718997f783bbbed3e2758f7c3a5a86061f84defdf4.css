@@ -1,0 +1,54 @@
+.user-image {
+  max-width: 200px;
+}
+
+.user-name {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.user-nickname {
+  font-size: 24px;
+  font-weight: 100;
+  margin-top: 1px;
+  padding-bottom: 15px;
+  border-bottom: .2px solid #C0C0C0;
+}
+
+.user-email {
+  border-bottom: .2px solid #C0C0C0;
+}
+
+.dash-numbers {
+  margin-top: 15px;
+}
+
+.small-bottom-margin {
+  margin-bottom: 2px;
+}
+
+.left-margin {
+  margin-left: 10px;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
