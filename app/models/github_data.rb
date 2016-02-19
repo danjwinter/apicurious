@@ -3,7 +3,7 @@ class GithubData
   attr_accessor :number_starred_repos,
               :followers_count,
               :following_count,
-              :organization_names,
+              :organizations,
               :commit_info,
               :repos,
               :contributions_in_last_year,
@@ -16,7 +16,7 @@ class GithubData
     @number_starred_repos       = params[:number_starred_repos]
     @followers_count                  = params[:followers_count]
     @following_count                  = params[:following_count]
-    @organization_names              = params[:organization_names]
+    @organizations              = params[:organizations]
     @commit_info                = params[:commit_info]
     @repos                      = params[:repos]
     @contributions_in_last_year = params[:contributions_in_last_year]
@@ -39,7 +39,7 @@ class GithubData
      obj.number_starred_repos       = attrs["number_starred_repos"]
      obj.followers_count                  = attrs["followers_count"]
      obj.following_count                  = attrs["following_count"]
-     obj.organization_names              = attrs["organization_names"]
+     obj.organizations              = attrs["organizations"]
      obj.commit_info                = attrs["commit_info"]
      obj.repos                      = attrs["repos"]
      obj.contributions_in_last_year = attrs["contributions_in_last_year"]
@@ -49,9 +49,15 @@ class GithubData
    obj
   end
 
+  def orgs
+    organizations.map do |org|
+      Organization.new(org)
+    end
+  end
+
   def commits
     commit_info.map do |event|
-      Commit.new(event["repo"], event["url"], event["commits"].count)
+      Commit.new(event["repo"], event["url"], event["commits"].count, event["date"])
     end
   end
 

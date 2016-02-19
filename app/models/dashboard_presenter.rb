@@ -39,7 +39,7 @@ class DashboardPresenter < SimpleDelegator
     githubdata.repositories
   end
 
-  def organization_names
-    githubdata.organization_names
+  def organizations
+    githubdata.orgs
   end
 end

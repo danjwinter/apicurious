@@ -20,7 +20,7 @@ class GithubService
       number_starred_repos: number_starred_repos,
       followers_count: followers_count,
       following_count: following_count,
-      organization_names: organization_names,
+      organizations: organizations,
       commit_info: commit_info,
       repos: repos,
       contributions_in_last_year: contributions_in_last_year,
@@ -30,47 +30,38 @@ class GithubService
   end
 
   def following_count
-    parse(connection.get("users/#{user.nickname}/following")).count
+    following.count
   end
 
   def followers_count
-    parse(connection.get("users/#{user.nickname}/followers")).count
+    followers.count
   end
 
   def number_starred_repos
-    parse(connection.get("users/#{user.nickname}/starred")).count
+    starred_repos.count
   end
 
-  def organization_names
-    parse(connection.get("users/#{user.nickname}/orgs")).map do |org|
-      org[:login]
+  def organizations
+    org_data.map do |org|
+      {name: org[:login], url: "https://github.com/#{org[:login]}"}
     end
   end
 
   def commit_info
-    events = parse(connection.get("users/#{user.nickname}/events")).map do |event|
+    events = commit_data.map do |event|
       if event[:type] == "PushEvent"
-        {repo: event[:repo][:name], url: "https://github.com/#{event[:repo][:name]}/commits?author=#{user.nickname}", commits: event.dig(:payload, :commits).select {|com| com.dig(:author, :name) == user.name}}
+        {repo: event[:repo][:name],
+         url: "https://github.com/#{event[:repo][:name]}/commits?author=#{user.nickname}",
+         date: event[:created_at],
+         commits: grab_users_commits(event)}
       end
     end.compact
     compact_shas(events)
   end
 
-  def compact_shas(events)
-    shas = []
-    events.each do |event|
-      event[:commits].map do |commit|
-        unless shas.include?(commit[:sha])
-          shas << commit[:sha]
-          commit
-        end
-      end.compact
-    end
-  end
-
   def repos
-    parse(connection.get("users/#{user.nickname}/repos")).map do |repo|
-      {name: repo[:name], url: repo[:url], language: repo[:language], forks_count: repo[:forks_count], stargazers_count: repo[:stargazers_count]}
+    repo_data.map do |repo|
+      {name: repo[:name], url: repo[:html_url], language: repo[:language], forks_count: repo[:forks_count], stargazers_count: repo[:stargazers_count]}
     end
   end
 
@@ -91,8 +82,48 @@ class GithubService
 
   private
 
+  def repo_data
+    parse(connection.get("users/#{user.nickname}/repos"))
+  end
+
+  def commit_data
+    parse(connection.get("users/#{user.nickname}/events"))
+  end
+
+  def org_data
+    parse(connection.get("users/#{user.nickname}/orgs"))
+  end
+
+  def starred_repos
+    parse(connection.get("users/#{user.nickname}/starred"))
+  end
+
+  def followers
+    parse(connection.get("users/#{user.nickname}/followers"))
+  end
+
+  def following
+    parse(connection.get("users/#{user.nickname}/following"))
+  end
+
   def parse(response)
     JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def grab_users_commits(event)
+    event.dig(:payload, :commits).select {|com| com.dig(:author, :name) == user.name}
+  end
+
+  def compact_shas(events)
+    shas = []
+    events.each do |event|
+      event[:commits].map do |commit|
+        unless shas.include?(commit[:sha])
+          shas << commit[:sha]
+          commit
+        end
+      end.compact
+    end
   end
 
   def add_token_to_headers
