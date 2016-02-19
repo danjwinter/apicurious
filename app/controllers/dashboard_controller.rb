@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   private
 
   def update_githubdata_for_new_user
-    if current_user.githubdata.new_user
+    if current_user.created_at == current_user.updated_at
       attributes = GithubService.new(current_user).attributes
       githubdata = GithubData.new(attributes)
       current_user.update_attribute("githubdata", githubdata)

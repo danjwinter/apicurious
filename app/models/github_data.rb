@@ -8,11 +8,9 @@ class GithubData
               :repos,
               :contributions_in_last_year,
               :longest_streak,
-              :current_streak,
-              :new_user
+              :current_streak
 
   def initialize(params={})
-    @new_user = true if params.empty?
     @number_starred_repos       = params[:number_starred_repos]
     @followers_count                  = params[:followers_count]
     @following_count                  = params[:following_count]
