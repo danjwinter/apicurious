@@ -1,11 +1,11 @@
 class Commit
   attr_accessor :repo, :commit_count, :url, :date
 
-  def initialize(repo, url, commit_count, date)
-    @repo = repo
-    @url = url
-    @commit_count = commit_count
-    @date = date
+  def initialize(params)
+    @repo = params[:repo]
+    @url = params[:url]
+    @commit_count = params[:commit_count]
+    @date = params[:date]
   end
 
   def formatted_date

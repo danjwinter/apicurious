@@ -57,7 +57,10 @@ class GithubData
 
   def commits
     commit_info.map do |event|
-      Commit.new(event["repo"], event["url"], event["commits"].count, event["date"])
+      Commit.new(repo: event["repo"],
+                 url: event["url"],
+                 commit_count: event["commits"].count,
+                 date: event["date"])
     end
   end
 

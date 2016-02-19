@@ -54,7 +54,7 @@ class GithubService
         {repo: event[:repo][:name],
          url: "https://github.com/#{event[:repo][:name]}/commits?author=#{user.nickname}",
          date: event[:created_at],
-         commits: grab_users_commits(event)}
+         commits: grab_user_commits(event)}
       end
     end.compact
     compact_shas(events)
@@ -114,7 +114,7 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def grab_users_commits(event)
+  def grab_user_commits(event)
     event.dig(:payload, :commits).select {|com| com.dig(:author, :name) == user.name}
   end
 
