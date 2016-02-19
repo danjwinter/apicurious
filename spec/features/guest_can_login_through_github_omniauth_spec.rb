@@ -4,9 +4,9 @@ describe "guest can login through github" do
   it "sees dashboard with their github info"  do
     VCR.use_cassette("github_service#dashboard") do
       visit root_path
-      expect(page).to have_content "Login with Github"
+      expect(page).to have_content "Git Yo Self"
 
-      click_on "Login with Github"
+      click_on "Git Yo Self"
 
       user = User.last
 

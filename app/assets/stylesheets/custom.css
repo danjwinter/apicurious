@@ -1,5 +1,6 @@
 .user-image {
   max-width: 200px;
+  border-style: double;
 }
 
 .user-name {
@@ -55,13 +56,56 @@ nav {
   border-style: dashed;
 }
 
-.border-block {
-
+.brand-logo {
+  margin-left: 15px;
 }
 
-.stats-numbers {
+.background-image {
+  background: url("/assets/computer_image.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.stats-text {
+.dash-background-image {
+  background: url("/assets/programming_screen.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 1.5;
+}
 
+.container {
+  opacity: 1;
+}
+
+.tabs {
+  border-style: outset;
+  backgroun-color: grey;
+  max-width: 600px;
+}
+
+a {
+  color: #191970;
+}
+
+.page {
+  background-color: white;
+  opacity: .7;
+  margin-left: 5px;
+}
+
+a.login-link {
+  color: white;
+  text-decoration: none;
+  font-size: 6em;
+  border-style: ridge;
+}
+
+.git-yo-self {
+  padding-top: 300px;
 }

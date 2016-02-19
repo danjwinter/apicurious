@@ -6,7 +6,7 @@ describe "user logs out" do
 
       visit root_path
 
-      click_on "Login with Github"
+      click_on "Git Yo Self"
       click_on "Logout"
 
       visit dashboard_path

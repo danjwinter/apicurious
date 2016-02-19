@@ -32,7 +32,7 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def recent_commits
-    githubdata.commits.first(5)
+    githubdata.commits.first(10)
   end
 
   def repos

@@ -24,30 +24,6 @@ class GithubData
     @current_streak             = params[:current_streak]
   end
 
-  def serialize(attr_name, class_name = Object)
-    coder = if [:load, :dump].all? { |x| class_name.respond_to?(x) }
-              class_name
-            else
-              Coders::YAMLColumn.new(class_name)
-            end
-  end
-
-  def self.load json
-   obj = self.new
-   unless json.nil?
-     attrs = JSON.parse json
-     obj.number_starred_repos       = attrs["number_starred_repos"]
-     obj.followers_count                  = attrs["followers_count"]
-     obj.following_count                  = attrs["following_count"]
-     obj.organizations              = attrs["organizations"]
-     obj.commit_info                = attrs["commit_info"]
-     obj.repos                      = attrs["repos"]
-     obj.contributions_in_last_year = attrs["contributions_in_last_year"]
-     obj.longest_streak             = attrs["longest_streak"]
-     obj.current_streak             = attrs["current_streak"]
-   end
-   obj
-  end
 
   def orgs
     organizations.map do |org|
@@ -68,6 +44,31 @@ class GithubData
     repos.map do |repo|
       Repository.new(repo)
     end
+  end
+
+  def serialize(attr_name, class_name = Object)
+    coder = if [:load, :dump].all? { |x| class_name.respond_to?(x) }
+      class_name
+    else
+      Coders::YAMLColumn.new(class_name)
+    end
+  end
+
+  def self.load json
+    obj = self.new
+    unless json.nil?
+      attrs = JSON.parse json
+      obj.number_starred_repos       = attrs["number_starred_repos"]
+      obj.followers_count                  = attrs["followers_count"]
+      obj.following_count                  = attrs["following_count"]
+      obj.organizations              = attrs["organizations"]
+      obj.commit_info                = attrs["commit_info"]
+      obj.repos                      = attrs["repos"]
+      obj.contributions_in_last_year = attrs["contributions_in_last_year"]
+      obj.longest_streak             = attrs["longest_streak"]
+      obj.current_streak             = attrs["current_streak"]
+    end
+    obj
   end
 
   def self.dump obj
