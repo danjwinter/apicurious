@@ -15,6 +15,7 @@ gem 'nokogiri'
 gem 'sidekiq'
 gem 'launchy'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'simplecov', :require => false, :group => :test
 
 group :development, :test do
   gem 'rspec-rails'

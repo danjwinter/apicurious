@@ -12,5 +12,9 @@
 !/log/.keep
 /tmp
 
+/spec/vcr
+
+/coverage
+
 # Ignore application configuration
 /config/application.yml

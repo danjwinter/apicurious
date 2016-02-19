@@ -1,3 +1,15 @@
+require 'simplecov'
+SimpleCov.start
+
+def create_user
+  User.create(uid: "13614117",
+              provider: "github",
+              token: "457b2b5f768d7e09b42463635bc4bd1929d4c2f5",
+              nickname: "danjwinter",
+              email: "dan.j.winter@gmail.com",
+              name: "Dan Winter",
+              image_url: "https://avatars.githubusercontent.com/u/13614117?v=3")
+end
 
 RSpec.configure do |config|
 #   config.before(:each) do

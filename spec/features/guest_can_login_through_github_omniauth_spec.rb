@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "access dashboard from root" do
-  it "can sign user in with github"  do
+describe "guest can login through github" do
+  it "sees dashboard with their github info"  do
     VCR.use_cassette("github_service#dashboard") do
       visit root_path
       expect(page).to have_content "Login with Github"

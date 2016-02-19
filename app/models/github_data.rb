@@ -62,12 +62,8 @@ class GithubData
   end
 
   def repositories
-    if repos.empty?
-      []
-    else
-      repos.map do |repo|
-        Repository.new(repo)
-      end
+    repos.map do |repo|
+      Repository.new(repo)
     end
   end
 

@@ -1,0 +1,36 @@
+<div class="col m3 user-stats">
+    <%= image_tag @user.image_url, class: "user-image" %>
+    <h2 class="user-name"> <%= @user.name %> </h2>
+    <h2 class="user-nickname"> <%= @user.nickname %> </h2>
+    <div class="user-email">
+      <%= link_to @user.email, "mailto:#{@user.email}" %>
+    </div>
+    <div class="row center">
+      <div class="row small-bottom-margin left-margin">
+        <div class="col m4 center dash-numbers">
+          <div class="row stats-numbers small-bottom-margin">
+            <%= @user.number_followers %>
+          </div>
+          <div class="row stats-text">
+            Followers
+          </div>
+        </div>
+        <div class="col m4 center dash-numbers">
+          <div class="row stats-numbers small-bottom-margin">
+            <%= @user.number_starred_repos %>
+          </div>
+          <div class="row stats-text">
+            Starred
+          </div>
+        </div>
+        <div class="col m4 center dash-numbers">
+          <div class="row stats-numbers small-bottom-margin">
+            <%= @user.number_following %>
+          </div>
+          <div class="row stats-text">
+            Following
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
