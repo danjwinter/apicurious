@@ -1,6 +1,9 @@
 .user-image {
   max-width: 200px;
   border-style: double;
+  padding:1px;
+  border:1px solid #021a40;
+  background-color: grey;
 }
 
 .user-name {
@@ -54,6 +57,7 @@ nav {
 
 .organization {
   border-style: dashed;
+  margin-bottom: 10px;
 }
 
 .brand-logo {
