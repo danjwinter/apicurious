@@ -43,7 +43,8 @@ class GithubService
 
   def organizations
     org_data.map do |org|
-      {name: org[:login], url: "https://github.com/#{org[:login]}"}
+      {name: org[:login],
+       url: "https://github.com/#{org[:login]}"}
     end
   end
 
@@ -61,7 +62,10 @@ class GithubService
 
   def repos
     repo_data.map do |repo|
-      {name: repo[:name], url: repo[:html_url], language: repo[:language], forks_count: repo[:forks_count], stargazers_count: repo[:stargazers_count]}
+      {name: repo[:name],
+       url: repo[:html_url],
+       forks_count: repo[:forks_count],
+       stargazers_count: repo[:stargazers_count]}
     end
   end
 
