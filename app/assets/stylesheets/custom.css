@@ -65,7 +65,7 @@ nav {
 }
 
 .background-image {
-  background: url("/assets/computer_image.jpg") no-repeat center center fixed;
+  background: image-url("computer_image.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -74,7 +74,7 @@ nav {
 }
 
 .dash-background-image {
-  background: url("/assets/programming_screen.jpg") no-repeat center center fixed;
+  background: image-url("programming_screen.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
