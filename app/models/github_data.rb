@@ -12,7 +12,7 @@ class GithubData
               :new_user
 
   def initialize(params={})
-    @new_user = true if params.empty?
+    @new_user = params.empty? ? true : false
     @number_starred_repos       = params[:number_starred_repos]
     @followers_count                  = params[:followers_count]
     @following_count                  = params[:following_count]
